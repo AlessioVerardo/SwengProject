@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutWeather"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:textAlignment="center"
+    tools:context=".WeatherActivity">
+
+    <EditText
+        android:id="@+id/addressSearch"
+        android:layout_width="167dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="92dp"
+        android:ems="8"
+        android:inputType="textPersonName"
+        android:text="EPFL"
+        android:textSize="14sp"
+        app:layout_column="0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.209"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_row="1" />
+
+    <Button
+        android:id="@+id/btnGetWeather"
+        android:layout_width="309dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="128dp"
+        android:onClick="getWeatherForecast"
+        android:text="Get weather forecast"
+        android:textSize="18sp"
+        app:layout_column="0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_row="2" />
+
+    <Switch
+        android:id="@+id/switchLocation"
+        android:layout_width="167dp"
+        android:layout_height="27dp"
+        android:onClick="switchListener"
+        android:text="Use gps location"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.209"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.075" />
+
+    <androidx.gridlayout.widget.GridLayout
+        android:id="@+id/gridLayout"
+        android:layout_width="405dp"
+        android:layout_height="0dp"
+        android:layout_centerHorizontal="true"
+        app:alignmentMode="alignBounds"
+        app:columnCount="6"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:rowCount="8"
+        app:rowOrderPreserved="false"
+        app:useDefaultMargins="true">
+
+    </androidx.gridlayout.widget.GridLayout>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="196dp"
+        android:text="Predicted weather forecast"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.261"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
