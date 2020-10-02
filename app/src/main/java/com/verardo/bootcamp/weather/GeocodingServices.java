@@ -1,6 +1,5 @@
 package com.verardo.bootcamp.weather;
 
-import android.content.Context;
 import android.location.Address;
 import android.location.Geocoder;
 import com.verardo.bootcamp.WeatherActivity;
