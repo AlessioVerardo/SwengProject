@@ -16,6 +16,6 @@ public class GreetingActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String name = intent.getStringExtra(MainActivity.NAME);
         TextView tv = findViewById(R.id.greetingMessage);
-        tv.setText("Hello big la night " + name);
+        tv.setText("Hi there, welcome back " + name);
     }
 }
