@@ -13,9 +13,10 @@ public class GreetingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_greeting);
 
+        //get the name in the intent and display it in the activity
         Intent intent = getIntent();
         String name = intent.getStringExtra(MainActivity.NAME);
         TextView tv = findViewById(R.id.greetingMessage);
-        tv.setText("Hello big la night " + name);
+        tv.setText("Hi there, welcome back " + name);
     }
 }
