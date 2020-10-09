@@ -1,4 +1,10 @@
 package com.verardo.bootcamp;
 
-public class TestClass {
+import android.app.Application;
+
+import dagger.hilt.android.HiltAndroidApp;
+
+@HiltAndroidApp
+public class TestClass extends Application {
+
 }

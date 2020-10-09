@@ -1,5 +1,8 @@
 package com.verardo.bootcamp.weather;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class Location {
     private double longitude;
     private double latitude;

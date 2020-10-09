@@ -7,6 +7,7 @@ import org.json.JSONTokener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+
 public class Weather {
     private DailyWeather current;
     private DailyWeather[] forecastWeather;

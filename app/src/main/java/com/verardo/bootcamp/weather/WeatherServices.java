@@ -1,6 +1,8 @@
 package com.verardo.bootcamp.weather;
 
 
+import android.content.Context;
+
 import com.verardo.bootcamp.R;
 import com.verardo.bootcamp.WeatherActivity;
 
@@ -12,14 +14,19 @@ import java.util.NoSuchElementException;
 
 import javax.net.ssl.HttpsURLConnection;
 
-public class WeatherServices {
+public class WeatherServices implements WeatherServicesInterface {
+    private Context context;
+    public WeatherServices(Context context){
+        this.context = context;
+    }
     private static String BASE_URL = "https://api.openweathermap.org/data/2.5/onecall?";
-    public static Weather getWeatherAtLocation(Location loc) throws Exception {
-        String API_KEY = WeatherActivity.getContext().getString(R.string.openweather_api_key);
+
+    public Weather getWeatherAtLocation(Location loc) throws Exception {
+        String API_KEY = context.getString(R.string.openweather_api_key);
         String query = BASE_URL + "lat=" + String.valueOf(loc.getLatitude()) + "&lon=" + String.valueOf(loc.getLongitude()) + "&units=metric&exclude=minutely,hourly,alerts&appid=" + API_KEY;
         URL url = new URL(query);
-        InputStream stream = null;
-        HttpsURLConnection connection = null;
+        InputStream stream;
+        HttpsURLConnection connection;
         connection = (HttpsURLConnection) url.openConnection();
         connection.setReadTimeout(3000);
         connection.setConnectTimeout(3000);
