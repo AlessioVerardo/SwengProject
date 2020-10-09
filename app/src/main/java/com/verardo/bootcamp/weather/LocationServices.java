@@ -6,12 +6,15 @@ import android.content.pm.PackageManager;
 import android.location.*;
 
 import androidx.core.app.ActivityCompat;
-import com.verardo.bootcamp.WeatherActivity;
 
-public class LocationServices {
-    public static Location getCurrentLocation() {
+public class LocationServices implements LocationServicesInterface {
+    private Context context;
 
-        Context context = WeatherActivity.getContext();
+    public LocationServices(Context context){
+        this.context = context;
+    }
+
+    public Location getCurrentLocation() {
         LocationManager locMan = (LocationManager) context.getSystemService(context.LOCATION_SERVICE);
 
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {

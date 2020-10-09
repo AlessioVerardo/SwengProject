@@ -22,17 +22,18 @@ import java.net.URL;
 import javax.net.ssl.HttpsURLConnection;
 
 public class WeatherActivity extends AppCompatActivity {
-    private static Context context;
+    private  LocationServices ls;
+    private GeocodingServices gs;
+    private WeatherServices ws;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        context = this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather);
-    }
+        ls = new LocationServices(this);
+        gs = new GeocodingServices(this);
+        ws = new WeatherServices(this);
 
-    public static Context getContext(){
-        return context;
     }
 
     public void switchListener(View v){
@@ -60,32 +61,27 @@ public class WeatherActivity extends AppCompatActivity {
                 != PackageManager.PERMISSION_GRANTED) {
             // Check Permissions Now
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 2);
-        } else {
-
-        }
+        } else {}
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
             // Check Permissions Now
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 2);
-        } else {
-
-        }
+        } else {}
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.INTERNET)
                 != PackageManager.PERMISSION_GRANTED) {
             // Check Permissions Now
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.INTERNET}, 2);
-        } else {
-
-        }
+        } else {}
 
         Location loc;
-        if(((Switch)findViewById(R.id.switchLocation)).isChecked())
-            loc = LocationServices.getCurrentLocation();
-        else
-            loc = GeocodingServices.convertAddressToLocation(((TextView)findViewById(R.id.addressSearch)).getText().toString());
-        System.out.println(loc.getLongitude());
-        Weather we = WeatherServices.getWeatherAtLocation(loc);
+        if(((Switch)findViewById(R.id.switchLocation)).isChecked()) {
+            loc = ls.getCurrentLocation();
+        }else {
+            loc = gs.convertAddressToLocation(((TextView) findViewById(R.id.addressSearch)).getText().toString());
+        }
+
+        Weather we = ws.getWeatherAtLocation(loc);
 
         GridLayout gl = findViewById(R.id.gridLayout);
         gl.removeAllViews();
@@ -119,8 +115,6 @@ public class WeatherActivity extends AppCompatActivity {
         empty.setText("  ");
         setCorrectParameter(empty);
         gl.addView(empty);
-
-
 
         for(int j =0; j<7; ++j){
             Weather.DailyWeather cur = we.getForecastWeather()[j];
